@@ -1,9 +1,9 @@
 package web.models;
 
-public class Car {
+public class Car implements Cloneable {
     private String producer;
     private String model;
-    private String body ;
+    private String body;
 
     public Car() {
     }
@@ -45,5 +45,10 @@ public class Car {
                 ", model='" + model + '\'' +
                 ", body='" + body + '\'' +
                 '}';
+    }
+
+    @Override
+    public Car clone() {
+        return new Car(this.producer, this.model, this.body);
     }
 }

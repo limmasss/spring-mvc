@@ -19,9 +19,8 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public List<Car> getCars(Optional<Integer> count){
-        List<Car> allCars = carDao.getAllCars();
-        if (!count.isPresent() || allCars.size() <= count.get()) {
-            return allCars;
+        if (!count.isPresent() || carDao.size() <= count.get()) {
+            return carDao.getAllCars();
         } else {
             return carDao.getCars(count.get());
         }

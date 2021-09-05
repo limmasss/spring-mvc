@@ -9,4 +9,6 @@ public interface CarDao {
     List<Car> getCars(int count);
 
     void save(Car car);
+
+    int size();
 }

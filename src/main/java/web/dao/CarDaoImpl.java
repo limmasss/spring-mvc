@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 import web.models.Car;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -18,16 +19,21 @@ public class CarDaoImpl implements CarDao {
 
     @Override
     public List<Car> getAllCars(){
-        return cars;
+        return Collections.unmodifiableList(cars);
     }
 
     @Override
     public List<Car> getCars(int count){
-        return cars.subList(0, count);
+        return Collections.unmodifiableList(cars.subList(0, count));
     }
 
     @Override
     public void save(Car car) {
-        cars.add(car);
+        cars.add(car.clone());
+    }
+
+    @Override
+    public int size() {
+        return cars.size();
     }
 }
